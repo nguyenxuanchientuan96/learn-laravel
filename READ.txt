@@ -1,0 +1,87 @@
+basic-laravel/
+├── app/
+│   ├── Console
+│   ├── Exceptions
+│   ├── Http
+│   │   ├── Controllers
+│   │   ├── Middleware
+│   │   └──  Kernel.php
+│   └── Providers
+├── bootstrap/
+├── config/
+├── database/
+├── public/
+├── resources/
+├── storage/
+├── routes/
+├── tests/
+├── vendor/
+├── .env
+├── .env.example
+├── composer.json
+├── composer.lock
+├── package.json
+├── gulpfile.js
+├── server.php
+└── artisan
+
+Và bây giờ mình sẽ giải thích mục đích, vai trò của từng thư mục tập tin trong đây nhé, chúng ta sẽ có như sau:
+
+    app là thư mục chứa tất cả các thư mục, các tập tin php, các class php, thư viện, models để xây dựng project của bạn.
+        Console thư mục chứa các tập tin định nghĩa các lệnh thực thi trên Artisan.
+        Excerption thư mục chứa các tập tin quản lý, điều hướng lỗi.
+        Http
+            Controllers là thư mục chứa các tập tin controllers
+            Middleware là thư mục chứa các tập tin lọc và ngăn chặn các requests.
+            Kernel.php là tập tin cấu hình, định nghĩa Middleware hoặc nhóm Middleware.
+        Providers chứa các providers mình sẽ nói rõ về nó trong các bài nâng cao.
+    bootstrap thư mục chứa tập tin điều hướng khởi động hệ thống, thường thì chúng ta sẽ không làm gì đến nó.
+    config chứa mọi tập tin cấu hình của Laravel
+    database chứa các thư mục tập tin về CSDL
+         migrations chứa các tập tin định nghĩa khởi tạo và sử bảng.
+         seeds chứa các tập tin định nghĩa dữ liệu insert vào database.
+         factories chứa các tập tin định nghĩa các cột bảng dữ liệu để tạo ra các dữ liệu ảo phục vụ cho tests.
+    public chính là webroot người dùng sẽ truy cập vào đây, đây cũng là nơi chứa các tập tin css, js, image.
+    resources chứa các tập tin giao diện (js, css, less, sass, coffeescript,...), views, ngôn ngữ.
+    storage chứa các tập tin hệ thống như upload, cache, session, cookie, log...
+    routes là thư mục chứa các tập tin định nghĩa các router, xử lý router hoặc điều hướng router (tức là URL, laravel không tự đặt url theo kiểu example.com/controller/action/value mà chúng ta phải tự định nghĩa chúng) bao gồm 3 loại là web, api và console.
+     tests chứa các tập tin định nghĩa tests.
+    vendor thư mục của composer.
+    .env và .env.example là 2 tập tin cấu hình chính của laravel như key app, tên app, url app, email,  env mode, CSDL hay bật tắt debug.
+    composer.json, composer.lock tập tin của composer.
+    package.js tập tin cấu hình của nodejs chứa các package cần thiết cho projects.
+    gulpfile.js là tập tin gulp builder.
+    phpunit.xml là tập tin xml của phpunit dùng để testing project.
+    server.php là tập tin để artisan trỏ đến tạo server khi gõ lệnh php artisan serve
+    artisan tập tin thực thi lệnh của Laravel, cũng là tập tin mà chúng ta tương tác nhiều nhất.
+
+-----------------route
+mô hình hoạt động
+trình duyệt -> router -> controller -> model -> db -> model -> view -> trình duyệt
+
+route: nắm đc yêu cầu từ ng dùng đẩy lên serve
+route: định nghĩa đường dẫn
+
+------------------ group route
+Nhóm các đường link có chung tiền tố lại vs nhau -> k phải viết nhiều
+ví dụ:
+
+Route:group(['prefix'=>'admin'], function(){
+    Route:get('home', function(){
+        return 'Day la trang home';
+    });
+
+    Route:get('edit-post', function(){
+        return 'Day la trang edit post';
+    });
+});
+
+---------------- controller
+- Trái tim của phần mềm
+- gíup lấy dữ liệu từ model chuyển sang view
+
+- Tạo controller: php artisan make:controller MyFirstController
+
+
+-------------------view
+- nơi controller lấy dữ liệu và đưa ra ngoài
