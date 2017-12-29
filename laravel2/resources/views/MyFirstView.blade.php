@@ -5,8 +5,11 @@
 ?> -->
 
 <!-- Đẩy 1 mảng -->
-	<?php
-		foreach ($user as $value) {
-			echo $value . "</br>";
-		}
-	?>
+	<!-- <?php
+		//foreach ($user as $value) {
+			//echo $value . "</br>";
+		//}
+	?> -->
+	{{-- @foreach($user as $value)
+		{{ $value }}
+	@endforeach --}}
